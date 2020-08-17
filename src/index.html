@@ -1,26 +1,75 @@
 <!DOCTYPE html>
-<html>
-<head>
-<title>Page Title</title>
-<style>
-body {
-  background-color: black;
-  text-align: center;
-  color: white;
-  font-family: Arial, Helvetica, sans-serif;
-}
-</style>
-</head>
+<html lang ="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>The Fine Art Gallery</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+  </head>
+
+
+
+
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-push-2">
+          <h1 class="text-center">The Fine Art Gallery</h1>
+          <hr/>
+          <br/>
+        </div>
+      </div>
+
+      <div id="artRow" class="row">
+        <!-- ART LOADs HERE -->
+      </div>
+    </div>
+
+    <div id="artTemplate" style="display: none;">
+      <div class="col-sm-6 col-md-4 col-lg-3">
+        <div class="panel panel-default panel-art">
+          <div class="panel-heading">
+            <h3 class="panel-title">Auction</h3>
+          </div>
+          <div class="panel-body">
+            <img alt="140x140" data-src="holder.js/140x140" class="img-rounded img-center" style="width: 100%; height: 200px;">
+            <br/><br/>
+            <strong>Name</strong>: <span class="art-name">Blah</span><br/>
+            <strong>Description</strong>: <span class="art-description">Blah</span><br/>
+            <strong>Highest Bid</strong>: <span class="highest-bid">$0</span><br/>
+            <form>
+              <label for="value">Enter your bid:</label>
+              <input type="text" id="bid" name="bid"><br><br>
+            </form>
+            <button class="btn btn-default btn-submit" type="button" data-id="0">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/web3.min.js"></script>
+    <script src="js/truffle-contract.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+
+
+  
+<!-- 
 <body>
 
 <h1>Welcome to the Fine Arts Gallery</h1>
 <p>This is an auction.</p>
 <img src="https://ae01.alicdn.com/kf/H4babc13176c4480587f0381e57e42e0en/Creative-Drop-resistant-Plastic-Imitation-Ceramic-Vase-Window-Vase-Living-Room-Bedroom-Fake-Flower-Decoration-Vase.jpg" alt="vase" style="width:200px">
-<p><b> VASE </b></p>
-<p> <I> "18th Century lost masterpiece with blue-and-white floral design" </I></p>
-<p> The base value of this art work is $100</p>
-<p> The current auction value is $</p>
-
+<p> The base value of this art work is $10</p>
 
 <form>
   <label for="value">Enter your bid:</label>
@@ -29,5 +78,5 @@ body {
 
 <button type="button">Submit</button>
 
-</body>
+</body> -->
 </html>

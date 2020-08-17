@@ -12,3 +12,8 @@ files and changes
 5. node_modules- none
 6. src- changed index.html, frontend pending (app.js)
 7. test- added auction.js
+
+
+## How to Run the folder
+1. Explain stuff to download (Ganache, Truffle, npm, lite server, etc.)
+2. Clone repo
