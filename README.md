@@ -17,3 +17,8 @@ files and changes
 ## How to Run the folder
 1. Explain stuff to download (Ganache, Truffle, npm, lite server, etc.)
 2. Clone repo
+
+# Instruction Document
+https://www.overleaf.com/project/5f3c751c6ccb70000192e0cd
+# Tutorial document/executive summary(Just a suggestion: we can use this for explanation in our video too)
+https://www.overleaf.com/project/5f3c77f26ccb70000192e295
