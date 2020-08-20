@@ -9,7 +9,7 @@
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/custom.css" rel="stylesheet">
+    <!-- <link href="css/custom.css" rel="stylesheet"> -->
   </head>
 
 
@@ -41,10 +41,13 @@
             <br/><br/>
             <strong>Name</strong>: <span class="art-name">Blah</span><br/>
             <strong>Description</strong>: <span class="art-description">Blah</span><br/>
-            <strong>Highest Bid</strong>: <span class="highest-bid">$0</span><br/>
+            <strong>Highest Bid</strong>: <span class="highest-bid">number</span><br/>
+            <strong>Minimum Increment</strong>: <span class="min-incr">number</span><br/>
+            <strong>Original Price</strong>: <span class="base-price">number</span><br/>
+            <strong>Increase in Value</strong>: <span class="incr-in-value">number</span><br/>
             <form>
               <label for="value">Enter your bid:</label>
-              <input type="text" id="bid" name="bid"><br><br>
+              <input type="number" min="0.00" class="input-amount" name="bid"><br><br>
             </form>
             <button class="btn btn-default btn-submit" type="button" data-id="0">Submit</button>
           </div>
@@ -61,22 +64,4 @@
     <script src="js/app.js"></script>
   </body>
 
-
-  
-<!-- 
-<body>
-
-<h1>Welcome to the Fine Arts Gallery</h1>
-<p>This is an auction.</p>
-<img src="https://ae01.alicdn.com/kf/H4babc13176c4480587f0381e57e42e0en/Creative-Drop-resistant-Plastic-Imitation-Ceramic-Vase-Window-Vase-Living-Room-Bedroom-Fake-Flower-Decoration-Vase.jpg" alt="vase" style="width:200px">
-<p> The base value of this art work is $10</p>
-
-<form>
-  <label for="value">Enter your bid:</label>
-  <input type="text" id="bid" name="bid"><br><br>
-</form>
-
-<button type="button">Submit</button>
-
-</body> -->
 </html>
