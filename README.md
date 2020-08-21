@@ -15,22 +15,25 @@ The important folders in the directory include:
 1. Download the necessary packages (Node Package Manager, Truffle, Ganache, an IDE, Lite Server, ) - detailed instructions in tutorial file attached --> this is the same as Ethereum Pet Shop, we can borrow their insturctions
 2. Open Ganache, intialize some wallets, connect MetaMask to Ganache --> these are also in the tutorials they gave us
 4. Migrate to root folder
-3. Test the contract (not essential)
+5. If you would like to reinitialize the app (if for example, you used this application in the past), you will need to delete any `.json` files in `build/contracts`
+6. Test the contract (not essential)
 ```
 $ truffle test
 ```
-4. Compile the contract
+7. Compile the contract
 ```
 $ truffle compile
 ```
-5. Migrate the contract to your local server through Ganache
+8. Migrate the contract to your local server through Ganache. The contract needs to be compiled (Step 7) before it can be migrated
 ```
 $ truffle migrate
 ```
-6. Run the local server
+9. Run the local server
 ```
 $ npm run dev
 ```
+
+* **Note:** Steps 6-9 will create a new folder directory `build/contracts` with `.json` files for the smart contract `Auction.sol` and `Migrations.sol`
 
 ## Authors
 - [Akshata Puranik](https://github.com/AkshataPuranik123)
