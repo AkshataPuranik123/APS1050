@@ -14,7 +14,11 @@ The important folders in the directory include:
 ## Instructions for Local Deployment
 1. Download the necessary packages (Node Package Manager, Truffle, Ganache, an IDE, Lite Server, ) - detailed instructions in tutorial file attached --> this is the same as Ethereum Pet Shop, we can borrow their insturctions
 2. Open Ganache, intialize some wallets, connect MetaMask to Ganache --> these are also in the tutorials they gave us
-4. Migrate to root folder
+3. Clone the repo
+```
+$ git clone https://github.com/AkshataPuranik123/APS1050.git
+```
+4. Migrate to root folder of the repo
 5. If you would like to reinitialize the app (if for example, you used this application in the past), you will need to delete any `.json` files in `build/contracts`
 6. Test the contract (not essential)
 ```
