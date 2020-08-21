@@ -20,11 +20,11 @@ $ git clone https://github.com/AkshataPuranik123/APS1050.git
 ```
 4. Migrate to root folder of the repo
 5. If you would like to reinitialize the app (if for example, you used this application in the past), you will need to delete any `.json` files in `build/contracts`
-6. Test the contract (not essential)
+6. Test the contract functions using unit tests specified in `test/TestAuction.sol` (not essential)
 ```
 $ truffle test
 ```
-7. Compile the contract
+7. Compile the contracts `Auction.sol` and `Migrations.sol` located in `contracts/`
 ```
 $ truffle compile
 ```
@@ -37,7 +37,7 @@ $ truffle migrate
 $ npm run dev
 ```
 
-**Note:** Steps 6-9 will create a new folder directory `build/contracts` with `.json` files for the smart contract `Auction.sol` and `Migrations.sol`
+**Note:** Steps 6/7 will create a new folder directory `build/contracts` with `.json` files for the smart contract `Auction.sol` and `Migrations.sol`. These `.json` files contain the "contract" information used to run the app locally
 
 ## Authors
 - [Akshata Puranik](https://github.com/AkshataPuranik123)
