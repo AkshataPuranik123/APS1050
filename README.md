@@ -18,11 +18,11 @@ The important folders in the directory include:
 3. Test the contract (not essential)
 ```bash
 truffle test
-```bash
-4. Compile the contract
 ```
-truffle compile
+4. Compile the contract
 ```bash
+truffle compile
+```
 5. Migrate the contract to your local server through Ganache
 ```bash
 truffle migrate
