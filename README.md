@@ -33,7 +33,7 @@ $ truffle migrate
 $ npm run dev
 ```
 
-* **Note:** Steps 6-9 will create a new folder directory `build/contracts` with `.json` files for the smart contract `Auction.sol` and `Migrations.sol`
+**Note:** Steps 6-9 will create a new folder directory `build/contracts` with `.json` files for the smart contract `Auction.sol` and `Migrations.sol`
 
 ## Authors
 - [Akshata Puranik](https://github.com/AkshataPuranik123)
