@@ -16,20 +16,20 @@ The important folders in the directory include:
 2. Open Ganache, intialize some wallets, connect MetaMask to Ganache --> these are also in the tutorials they gave us
 4. Migrate to root folder
 3. Test the contract (not essential)
-```bash
-truffle test
+```
+$ truffle test
 ```
 4. Compile the contract
-```bash
-truffle compile
+```
+$ truffle compile
 ```
 5. Migrate the contract to your local server through Ganache
-```bash
-truffle migrate
+```
+$ truffle migrate
 ```
 6. Run the local server
-```bash
-npm run dev
+```
+$ npm run dev
 ```
 
 ## Authors
