@@ -45,7 +45,7 @@ $ npm run dev
 
 ## Questions/Contributions/Future Work
 - The app does not have payment processing for bids and doesn't track money. As it stands, it's a CRUD application where the web3 wallet only requests the wallet holder to pay gas fees for computation
-- The app doesn't allow users to create their own bids
+- The app doesn't allow users to create their own auctions
 - Improvements can be made to the UI. Some examples of improvements include:
   1. There is no front end interactivity for the requirements in the smart contract backend. For example, when a bid amount entered into the input box is lower than (highest bid + minimum increment), the contract will prevent execution of the bid action through the MetaMask client. It would be better to communicate this on the front end
   2. More attractive HTML/CSS layout
