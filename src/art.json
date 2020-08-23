@@ -5,7 +5,8 @@
       "picture": "images/Vase.png",
       "description": "18th Century lost masterpiece with blue-and-white floral design",
       "minimum_increment": "2",
-      "original_price": "20"
+      "original_price": "20",
+      "more_info": "https://en.wikipedia.org/wiki/Vase"
   },
   {
       "id": 1,
@@ -13,7 +14,8 @@
       "picture": "images/mona_lisa.jpg",
       "description": "Famous painting by the Italian artist, Leonardo da Vinci. Just beautiful!",
       "minimum_increment": "20",
-      "original_price": "200"
+      "original_price": "200",
+      "more_info": "https://en.wikipedia.org/wiki/Mona_Lisa"
   },
   {
       "id": 2,
@@ -21,7 +23,8 @@
       "picture": "images/starry_night.jpg",
       "description": "A Van Gogh classic depicting a beautiful starry night using pastels.",
       "minimum_increment": "35",
-      "original_price": "150"
+      "original_price": "150",
+      "more_info": "https://en.wikipedia.org/wiki/The_Starry_Night"
   },
   {
       "id": 3,
@@ -29,6 +32,7 @@
       "picture": "images/liberty_leading_people.jpg",
       "description": "Delacroix painting commemorating the July Revolution of 1830 in France",
       "minimum_increment": "100",
-      "original_price": "1000"
+      "original_price": "1000",
+      "more_info": "https://en.wikipedia.org/wiki/Liberty_Leading_the_People"
   }
 ]

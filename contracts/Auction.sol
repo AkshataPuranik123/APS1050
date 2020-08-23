@@ -18,6 +18,7 @@ contract Auction {
 
     // Creating hash tables for storing information
     mapping(uint => Item) public items; // item hash table
+	mapping(uint => address) public highestBidders; // highest bidders hash table
 
 	// Declaring events which help us use ethereum's logging facility
 	event BidEvent(uint _itemId, uint indexed _bidAmt);
@@ -30,9 +31,10 @@ contract Auction {
 		addItem("Liberty Leading the People", "Delacroix painting commemorating the July Revolution of 1830 in France", 1000, 100, 1000);
 	}
 
-    // Function to increment itemCount (itemCount starts at 0 to match with how HTML works)
+    // Function to add items and highest bidders, incrementing itemCount (itemCount starts at 0)
 	function addItem (string memory _name, string memory _desc, uint _baseValue, uint _increment, uint _startPrice) private { 	
-		items[itemId] = Item(_name, _desc, _baseValue, _increment,_startPrice); //_endTime
+		items[itemId] = Item(_name, _desc, _baseValue, _increment,_startPrice);
+		highestBidders[itemId] = address(0);
 		itemId ++;
 	}
 
@@ -103,6 +105,18 @@ contract Auction {
 	function getArrayOfIncrements () public view returns (uint[itemCount] memory) {
 		return this.getArrayOfNumericalInformation(3);
 	}
+
+	// Function to get highest bidders
+	function getHighestBidders () public view returns (address[itemCount] memory) {
+		address[itemCount] memory arrayOfBidders;
+
+		for (uint i=0;i < itemCount; i++) {
+			arrayOfBidders[i] = highestBidders[i];
+		}
+
+		return arrayOfBidders;
+
+	}
 	
     // Function to place a bid
     function placeBid (uint _itemId, uint _bidAmt) public returns (uint) {
@@ -111,9 +125,12 @@ contract Auction {
 		
 		require(check_bid (_itemId, _bidAmt),"Bid is lower or equal to the highest bid value"); // the bid should be higher or equal to the current
 		
-		require(check_increment (_itemId, _bidAmt),"Minimum increment value is $10"); // make sure that the increment is greater than or equal to the minimum increment for the auction item
+		require(check_increment (_itemId, _bidAmt),"Bid is not enough based on minimum increment"); // make sure that the increment is greater than or equal to the minimum increment for the auction item
+
+		require(check_highest_bidder(_itemId, msg.sender), "Person bidding is the highest bidder"); // make sure that person bidding isn't already highest bidder
 
         items[_itemId].auction_price = _bidAmt; // replace the current price with the new bid amount
+		highestBidders[_itemId] = msg.sender; // replace the highest bidder for that item id with the new highest bidder
 
 		emit BidEvent(_itemId, _bidAmt); // logs the bid event on ethereum EVM
 
@@ -136,5 +153,13 @@ contract Auction {
 		else return false;
 	}
 
+	// Function to check if person bidding is the highest bidder
+	function check_highest_bidder (uint _itemId, address person_wallet) public view returns (bool) {
+		if (person_wallet == highestBidders[_itemId]) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 
 }

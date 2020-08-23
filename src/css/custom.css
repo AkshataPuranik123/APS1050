@@ -1,1 +1,19 @@
-/* Add custom CSS here */
+/* Button Stuff */
+.btn-dark {
+    background-color: #2C3E50 !important;
+    border-color: #7b8a8b;
+}
+
+/* Navbar Stuff */
+.nav-link {
+    display: contents !important;
+}
+
+.bg-colored {
+    background: #2C3E50 !important;
+}
+
+.fa-paint-brush {
+    margin-right: 10px;
+    color: white;
+}

@@ -1,6 +1,7 @@
 App = {
   web3Provider: null,
   contracts: {},
+  account: "0x0",
 
   // Initialization function with loads all the art and information from the art.json file
   // You need to make sure art.json matches the smart contract initial variables
@@ -19,7 +20,7 @@ App = {
         artTemplate.find('.art-name').text(data[i].name); // name of item 
         artTemplate.find('.art-description').text(data[i].description); // decription of the item
         artTemplate.find('.min-incr').text(`$${data[i].minimum_increment}`); // minimum increment
-        artTemplate.find('.base-price').text(`$${data[i].original_price}`); // base price
+        artTemplate.find('.base-price').text(`Started at $${data[i].original_price}`); // base price
 
         // Creating identifier attributes for HTML elements
         artTemplate.find('.highest-bid').attr('data-id', data[i].id); // adding attribute to the highest bid so we can dynamically change it
@@ -38,8 +39,10 @@ App = {
     if (window.ethereum) {
       App.web3Provider = window.ethereum;
       try {
+        window.ethereum.autoRefreshOnNetworkChange = false;
         // Request account access
-        await window.ethereum.enable();
+        await window.ethereum.request({ method: 'eth_requestAccounts'});
+        
       } catch (error) {
         // User denied account access...
         console.error("User denied account access")
@@ -68,6 +71,14 @@ App = {
     
       // Set the provider for our contract
       App.contracts.Auction.setProvider(App.web3Provider);
+      
+      // Set up the accounts
+      web3.eth.getCoinbase(function(err, account) {
+        if (err === null) {
+          App.account = account;
+          $("#account").text(account);
+        }
+      })
 
       return App.updateAuctionPrices();
     });
@@ -80,6 +91,27 @@ App = {
   // i.e. when a person clicks, the app will process the bid input  
   bindEvents: function() { 
     $(document).on('click', '.btn-submit', App.handleBid);
+    // $(document).on('move', App.handleInputChanges);
+  },
+
+  handleInputChanges: function(id, bidAmount){
+      var account = App.account;
+      var artId = id.split("-")[2];
+      var highestBidder = $(document).find('.highest-bidder').eq(artId).text();
+      var minIncrement = Number($(document).find('.min-incr').eq(artId).text().slice(1));
+      var highestBid = Number($(document).find(`.highest-bid[data-id=${artId}]`).text().slice(1));
+      
+
+      if (account !==  highestBidder) {
+        if (bidAmount >= highestBid+minIncrement){
+          $(document).find(`.btn-submit[data-id=${artId}]`).prop('disabled',false);
+        } else {
+          $(document).find(`.btn-submit[data-id=${artId}]`).prop('disabled',true);
+        }
+      } else {
+        $(document).find(`.btn-submit[data-id=${artId}]`).prop('disabled',true);
+      }
+
   },
 
   // Function to update auction prices 
@@ -97,6 +129,8 @@ App = {
         }
       }).then(function(result) {
         return App.updateAuctionIncreases();
+      }).then(function(result) {
+        return App.updateHighestBidders();
       }).catch(function(err) {
         console.log(err.message);
       });
@@ -122,6 +156,22 @@ App = {
       
   },
 
+  updateHighestBidders: function () {
+    var auctionInstance;
+
+    App.contracts.Auction.deployed().then(function(instance) {
+      auctionInstance=instance;
+
+      return auctionInstance.getHighestBidders.call(); 
+    }).then(function(bidders) {
+      for (j=0;j<bidders.length;j++) {
+        $(document).find('.highest-bidder').eq(j).text(`${bidders[j]}`);
+      }
+    }).catch(function(err) {
+      console.log(err.message);
+    })
+  },
+
 
   // Function to handle a bid 
   // This function is bound to a user click
@@ -132,25 +182,18 @@ App = {
     var artId = parseInt($(event.target).data('id'));
     var bid_amount = parseInt($(`#input-amt-${artId}`).val());
     
-    var auctionInstance;
-
-    web3.eth.getAccounts(function(error, accounts) {
-      if (error) {
-        console.log(error);
-      }
-    
-      var account = accounts[0];
-    
-      App.contracts.Auction.deployed().then(function(instance) {
-        auctionInstance = instance;
-    
-        // Execute place bid as a transaction by sending account
-        return auctionInstance.placeBid(artId, bid_amount, {from: account});
-      }).then(function(result) {
-        return App.updateAuctionPrices();
-      }).catch(function(err) {
-        console.log(err.message);
-      });
+    var auctionInstance;    
+    var account = App.account;
+  
+    App.contracts.Auction.deployed().then(function(instance) {
+      auctionInstance = instance;
+  
+      // Execute place bid as a transaction by sending account
+      return auctionInstance.placeBid(artId, bid_amount, {from: account});
+    }).then(function(result) {
+      return App.updateAuctionPrices();
+    }).catch(function(err) {
+      console.log(err.message);
     });
   }
 

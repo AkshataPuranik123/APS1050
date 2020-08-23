@@ -9,47 +9,72 @@
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <!-- <link href="css/custom.css" rel="stylesheet"> -->
+    <link href="css/custom.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/16cdf6d73b.js" crossorigin="anonymous"></script>
   </head>
 
 
 
 
   <body>
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-12 col-sm-8 col-sm-push-2">
-          <h1 class="text-center">The Fine Art Gallery</h1>
-          <hr/>
-          <br/>
+    <div>
+      <nav class="navbar navbar-expand-sm bg-colored navbar-dark justify-content-end">
+        <div class="container">
+          <a class="navbar-brand" href="#">
+            <i class="fas fa-paint-brush"></i>
+            The Fine Art Gallery
+          </a> 
+          <div class="collapse navbar-collapse flex-grow-0 ml-auto mr-1" id="navbarSupportedContent">
+            <button class="btn btn-success ml-auto mr-1 account-button">Account: <span class="nav-link" id="account"></span></button>       
+          </div>
+        </div>
+        
+    </nav>
+      
+      <div class="container">
+        <div id="artRow" class="row justify-content">
+          <!--Art loads here-->
         </div>
       </div>
 
-      <div id="artRow" class="row">
-        <!-- ART LOADs HERE -->
-      </div>
+      
     </div>
 
     <div id="artTemplate" style="display: none;">
-      <div class="col-sm-6 col-md-4 col-lg-3">
-        <div class="panel panel-default panel-art">
-          <div class="panel-heading">
-            <h3 class="panel-title">Auction</h3>
-          </div>
-          <div class="panel-body">
-            <img alt="140x140" data-src="holder.js/140x140" class="img-rounded img-center" style="width: 100%; height: 200px;">
-            <br/><br/>
-            <strong>Name</strong>: <span class="art-name">Blah</span><br/>
-            <strong>Description</strong>: <span class="art-description">Blah</span><br/>
-            <strong>Highest Bid</strong>: <span class="highest-bid">number</span><br/>
-            <strong>Minimum Increment</strong>: <span class="min-incr">number</span><br/>
-            <strong>Original Price</strong>: <span class="base-price">number</span><br/>
-            <strong>Increase in Value</strong>: <span class="incr-in-value">number</span><br/>
-            <form>
-              <label for="value">Enter your bid:</label>
-              <input type="number" min="0.00" class="input-amount" name="bid"><br><br>
-            </form>
-            <button class="btn btn-default btn-submit" type="button" data-id="0">Submit</button>
+      
+      <div class="col-sm-12 col-md-4 col-lg-4 mt-4">
+        <div class="card">
+          <img class="card-img-top" src="..." alt="Card image cap" style="width: 100%; height: 250px;">
+          <div class="card-body">
+            <h5 class="card-title art-name">Panel title</h5>
+            <h6 class="card-subtitle mb-2 text-muted base-price">Panel subtitle</h6>
+            <p class="card-text art-description">Some quick example text to build on the panel title and make up the bulk of the panel's content.</p>
+            
+            <p class="card-text">
+              <strong>Highest Bid Amount: </strong><span class="highest-bid"></span>
+              <br>
+              <strong>Increase in Value: </strong><span class="incr-in-value"></span>
+              <br>
+              <strong>Minimum Bid Increment: </strong><span class="min-incr"></span>
+              <br>
+              <strong>Highest Bidder: </strong><span class="highest-bidder"></span></p>
+              <form>
+                <div class="form-row align-items-center">
+                  <div class="col-auto">
+                    <input type="number" class="form-control input-amount" placeholder="Bid Amount" min="0.00" name="bid" oninput="App.handleInputChanges(this.id, this.value)">
+                  </div>
+                  <div class="col-auto">
+                    <button class="btn btn-dark btn-submit" disabled=true>Submit Bid</button>
+                  </div>
+
+                </div>
+
+                
+              </form>
+              
+            
           </div>
         </div>
       </div>
