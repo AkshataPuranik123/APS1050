@@ -1,6 +1,7 @@
 pragma solidity ^0.5.0;
 
 contract Auction {
+
     // Create a structure to store information about an item in the auction house
 	struct Item{			
 		string item_name; // name
@@ -9,8 +10,9 @@ contract Auction {
 		uint min_increment; // minimum increment for a bid
 		uint auction_price;  // current price of item
 	}
+	
 
-    // Declaring global variables for the contract, we assume 4 as the number of items, this number needs to be adjusted
+    // Declaring global variables for the contract, we assume 4 as the number of items, this number can be adjusted
 	uint constant itemCount = 4;
     uint[itemCount] public arrayForItems;
 	uint public itemId = 0;
@@ -20,16 +22,19 @@ contract Auction {
     mapping(uint => Item) public items; // item hash table
 	mapping(uint => address) public highestBidders; // highest bidders hash table
 
+
 	// Declaring events which help us use ethereum's logging facility
 	event BidEvent(uint _itemId, uint indexed _bidAmt);
 
+
 	// Constructor
 	constructor() public {	
-		addItem("Vase", "18th Century lost masterpiece with blue-and-white floral design", 20, 2, 20); // now+172000
+		addItem("Vase", "18th Century lost masterpiece with blue-and-white floral design", 20, 2, 20);
 		addItem("Mona Lisa", "Famous painting by the Italian artist, Leonardo da Vinci. Just beautiful!", 200, 20, 200);
 		addItem("Starry Night", "A Van Gogh classic depicting a beautiful starry night using pastels.", 150, 35, 150);
 		addItem("Liberty Leading the People", "Delacroix painting commemorating the July Revolution of 1830 in France", 1000, 100, 1000);
 	}
+	
 
     // Function to add items and highest bidders, incrementing itemCount (itemCount starts at 0)
 	function addItem (string memory _name, string memory _desc, uint _baseValue, uint _increment, uint _startPrice) private { 	
@@ -38,10 +43,12 @@ contract Auction {
 		itemId ++;
 	}
 
+
 	// Function to get item count
 	function getItemCount () public pure returns (uint) {
 		return itemCount;
 	}
+	
 
 	// Function to get the name of an item using its item id
 	function getItemName (uint _itemId) public view returns (string memory) {
@@ -50,12 +57,14 @@ contract Auction {
 		return items[_itemId].item_name;
 	}
 
-	// Function to get the name of an item using its item id
+
+	// Function to get the highest current price of an item using its item id
 	function getItemPrice (uint _itemId) public view returns (uint) {
 		require(_itemId >= 0 && _itemId < itemCount, "Item does not exist"); // the item id must be greater than 0 but less or equal to the total count
 
 		return items[_itemId].auction_price;
 	}
+	
 
 	// Function to get the min_increment of an item using its item id
 	function getItemIncrement (uint _itemId) public view returns (uint) {
@@ -63,6 +72,7 @@ contract Auction {
 
 		return items[_itemId].min_increment;
 	}
+	
 
 	// Function to get percent increase in value over original listing price
 	function getPercentIncrease (uint _itemId) public view returns (uint) {
@@ -72,9 +82,9 @@ contract Auction {
 
 		return percentIncrease;
 	}
+	
 
 	// Function to get numerical information for all items in the auction as an array
-	// Could make it take in inputs of string instead of num but strings in Solidity are annoying to work with
 	function getArrayOfNumericalInformation (uint num) public view returns (uint[itemCount] memory) {
 		uint[itemCount] memory arrayOfNumbers;
 
@@ -90,23 +100,27 @@ contract Auction {
 
 		return arrayOfNumbers;
 	}
+	
 
 	// Function to get array of prices of all items in auction as an array
 	function getArrayOfPrices () public view returns (uint[itemCount] memory) {
 		return this.getArrayOfNumericalInformation(1);
 	}
 
+
 	// Function to get array of increase in percentages of all items in auction as an array
 	function getArrayOfIncreases () public view returns (uint[itemCount] memory) {
 		return this.getArrayOfNumericalInformation(2);
 	}
+
 
 	// Function to get array of increments of all items in auction as an array
 	function getArrayOfIncrements () public view returns (uint[itemCount] memory) {
 		return this.getArrayOfNumericalInformation(3);
 	}
 
-	// Function to get highest bidders
+
+	// Function to get the array of highest bidders
 	function getHighestBidders () public view returns (address[itemCount] memory) {
 		address[itemCount] memory arrayOfBidders;
 
@@ -117,6 +131,7 @@ contract Auction {
 		return arrayOfBidders;
 
 	}
+	
 	
     // Function to place a bid
     function placeBid (uint _itemId, uint _bidAmt) public returns (uint) {
@@ -138,11 +153,13 @@ contract Auction {
 
     }
 
+
     // Function to check if the bid is greater than highest bid
 	function check_bid (uint _itemId, uint _bidAmt) public view returns (bool) {
 		if (_bidAmt > items[_itemId].auction_price) return true;
 		else return false;
 	}
+	
 	
     // Function to check if the difference is greater to minimum increment value
 	function check_increment (uint _itemId, uint _bidAmt) public view returns (bool) {
@@ -152,6 +169,7 @@ contract Auction {
 		if (diff >= items[_itemId].min_increment) return true;
 		else return false;
 	}
+	
 
 	// Function to check if person bidding is the highest bidder
 	function check_highest_bidder (uint _itemId, address person_wallet) public view returns (bool) {
