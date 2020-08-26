@@ -78,7 +78,7 @@ contract Auction {
 	function getPercentIncrease (uint _itemId) public view returns (uint) {
 		uint auctionPrice = items[_itemId].auction_price;
 		uint basePrice = items[_itemId].base_price;
-		uint percentIncrease = (auctionPrice - basePrice)*100/auctionPrice;
+		uint percentIncrease = (auctionPrice - basePrice)*100/basePrice;
 
 		return percentIncrease;
 	}
