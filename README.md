@@ -2,18 +2,19 @@
 ## Description
 This repository contains the Soldity, JavaScript, and HTML/CSS code for a Auction Decentralized Application for deployment on the Ethereum blockchain. Some of the deployment code was referenced from the [Ethereum Pet Shop tutorial](https://www.trufflesuite.com/tutorials/pet-shop). The concepts covered in the tutorial (adoption of pets from a shop) were extended to a different application space (auctions) with different functions.
 
-This DApp was presented as a final project for the graduate course, APS1050 (Blockchain Technologies and Cryptocurrencies), taken at the University of Toronto. The executive summary for the app and the detailed instructions for launching and running the DApp on your local computer have been attached below.
+This DApp was presented as a final project for the graduate course, APS1050 (Blockchain Technologies and Cryptocurrencies), taken at the University of Toronto in the Summer of 2020. The executive summary for the app, detailed instructions for launching and running the dApp, and a [link to a video](https://www.youtube.com/watch?v=UfpU2Jhn3IU) outlining how the app works have been included in the repository.
 
 ## Folder Structure
 The important folders in the directory include:
 - `contracts`: Contains the code for the Auction smart contract
+- `documents`: Contains the executive summary and detailed set up instructions
 - `migrations`: Contains the JavaScript scripts to deploy and run migrations (adapted from the tutorial)
 - `src`: Contains the JavaScript and HTML/CSS for the front end, as well as the code that enables interaction with the smart contract
 - `test`: Contains the unit tests for the smart contract
 
 ## Instructions for Local Deployment
-1. Download the necessary packages (Node Package Manager, Truffle, Ganache, an IDE, Lite Server, ) - detailed instructions in tutorial file attached --> this is the same as Ethereum Pet Shop, we can borrow their insturctions
-2. Open Ganache, intialize some wallets, connect MetaMask to Ganache --> these are also in the tutorials they gave us
+1. Download the prerequisites to run the application. Detailed instructions for this step can be found in Sections 1 and 2 in `documents/setup_instructions.pdf`
+2. Run Ganache, and connect MetaMask to Ganache. Detailed instructions for this step can be found in Sections 3.1 and 3.2 in `documents/setup_instructions.pdf`
 3. Clone the repo
 ```
 $ git clone https://github.com/AkshataPuranik123/APS1050.git
@@ -51,4 +52,5 @@ $ npm run dev
 - Improvements can be made to the UI. Some examples of improvements include:
   1. Better front end interactivity for the requirements in the smart contract backend. Currently, the submit button is not active if the requirements of the bid are not met. Someone could easily design JS functionality to improve the UI.
   2. More attractive HTML/CSS layout
+- Refer to the executive summary located at `documents/executive_summary` for a more detailed description of future projects and work that can be done to improve this app
 - Please reach out to either of us for any other feedback
